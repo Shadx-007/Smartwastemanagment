@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 10% 95%;
+    --foreground: 30 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 10%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 60 20% 96%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 20% 96%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 20% 96%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 20% 96%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 50% 5%;
+    --foreground: 60 30% 96%;
+    --card: 20 50% 3%;
+    --card-foreground: 60 30% 96%;
+    --popover: 20 50% 3%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 12 6% 15%;
+    --secondary-foreground: 60 30% 96%;
+    --muted: 12 6% 15%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6% 15%;
+    --accent-foreground: 60 30% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 30% 96%;
+    --border: 12 6% 15%;
+    --input: 12 6% 15%;
+    --ring: 142.4 71.8% 29.2%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Smooth transitions for theme toggling */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cinematic scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted/30;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/70;
+}
+
+/* Atmospheric gradients */
+.dark .gradient-bg {
+  background: radial-gradient(circle at top right, rgba(100, 50, 0, 0.3), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(30, 90, 50, 0.15), transparent 40%);
+}
+
+.light .gradient-bg {
+  background: radial-gradient(circle at top right, rgba(255, 220, 100, 0.15), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(100, 200, 150, 0.1), transparent 40%);
+}
+
+/* Custom selection color */
+::selection {
+  @apply bg-primary/30 text-foreground;
+}
