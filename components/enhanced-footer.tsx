@@ -163,6 +163,12 @@ export function EnhancedFooter() {
               <Link href="/cookies" className="text-xs text-muted-foreground hover:text-foreground">
                 Cookie Policy
               </Link>
+              <Link href="/security" className="text-sm text-muted-foreground hover:text-foreground">
+                Security
+              </Link>
+              <Link href="/compliance" className="text-sm text-muted-foreground hover:text-foreground">
+                Compliance
+              </Link>
             </div>
           </div>
         </div>
