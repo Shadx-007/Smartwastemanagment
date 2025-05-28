@@ -1,27 +1,78 @@
+"use client"
+
 import { MainLayout } from "@/components/main-layout"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { BarChart, LineChart, PieChart } from "@/components/ui/chart"
 import {
-  ArrowUpRight,
-  ArrowDownRight,
-  Trash2,
-  Recycle,
-  Leaf,
-  AlertTriangle,
-  Download,
-  Calendar,
-  Filter,
-  RefreshCw,
-  MoreHorizontal,
-  TrendingUp,
-  TrendingDown,
-  Zap,
-} from "lucide-react"
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  type ChartConfig
+} from "@/components/ui/chart"
+import { 
+  BarChart, 
+  Bar, 
+  LineChart, 
+  Line, 
+  PieChart, 
+  Pie, 
+  Cell, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid
+} from "recharts"
+import { ArrowUpRight, ArrowDownRight, Trash2, Recycle, Leaf, AlertTriangle, Download, Calendar, Filter, RefreshCw, MoreHorizontal, TrendingUp, TrendingDown, Zap } from 'lucide-react'
 
 export default function DashboardPage() {
+  const lineChartConfig = {
+    Recyclables: {
+      label: "Recyclables",
+      color: "#0ea5e9",
+    },
+    Organic: {
+      label: "Organic",
+      color: "#10b981",
+    },
+    Landfill: {
+      label: "Landfill",
+      color: "#f59e0b",
+    },
+  } satisfies ChartConfig
+
+  const pieChartConfig = {
+    Recyclables: {
+      label: "Recyclables",
+      color: "#0ea5e9",
+    },
+    Organic: {
+      label: "Organic",
+      color: "#10b981",
+    },
+    Landfill: {
+      label: "Landfill",
+      color: "#f59e0b",
+    },
+    Hazardous: {
+      label: "Hazardous",
+      color: "#ef4444",
+    },
+    "E-waste": {
+      label: "E-waste",
+      color: "#8b5cf6",
+    },
+  } satisfies ChartConfig
+
+  const barChartConfig = {
+    rate: {
+      label: "Recycling Rate",
+      color: "#0ea5e9",
+    },
+  } satisfies ChartConfig
+
   return (
     <MainLayout>
       <div className="container mx-auto px-4 py-8">
@@ -145,24 +196,28 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <LineChart
-                  data={[
-                    { name: "Jan", Recyclables: 400, Organic: 240, Landfill: 160 },
-                    { name: "Feb", Recyclables: 420, Organic: 230, Landfill: 150 },
-                    { name: "Mar", Recyclables: 450, Organic: 260, Landfill: 140 },
-                    { name: "Apr", Recyclables: 470, Organic: 270, Landfill: 130 },
-                    { name: "May", Recyclables: 500, Organic: 280, Landfill: 120 },
-                    { name: "Jun", Recyclables: 520, Organic: 290, Landfill: 110 },
-                    { name: "Jul", Recyclables: 550, Organic: 300, Landfill: 100 },
-                  ]}
-                  index="name"
-                  categories={["Recyclables", "Organic", "Landfill"]}
-                  colors={["#0ea5e9", "#10b981", "#f59e0b"]}
-                  valueFormatter={(value) => `${value}kg`}
-                  showLegend={true}
-                  showXAxis={true}
-                  showYAxis={true}
-                />
+                <ChartContainer config={lineChartConfig}>
+                  <LineChart
+                    data={[
+                      { name: "Jan", Recyclables: 400, Organic: 240, Landfill: 160 },
+                      { name: "Feb", Recyclables: 420, Organic: 230, Landfill: 150 },
+                      { name: "Mar", Recyclables: 450, Organic: 260, Landfill: 140 },
+                      { name: "Apr", Recyclables: 470, Organic: 270, Landfill: 130 },
+                      { name: "May", Recyclables: 500, Organic: 280, Landfill: 120 },
+                      { name: "Jun", Recyclables: 520, Organic: 290, Landfill: 110 },
+                      { name: "Jul", Recyclables: 550, Organic: 300, Landfill: 100 },
+                    ]}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <ChartLegend content={<ChartLegendContent />} />
+                    <Line type="monotone" dataKey="Recyclables" stroke="var(--color-Recyclables)" strokeWidth={2} />
+                    <Line type="monotone" dataKey="Organic" stroke="var(--color-Organic)" strokeWidth={2} />
+                    <Line type="monotone" dataKey="Landfill" stroke="var(--color-Landfill)" strokeWidth={2} />
+                  </LineChart>
+                </ChartContainer>
               </div>
             </CardContent>
           </Card>
@@ -174,20 +229,35 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <PieChart
-                  data={[
-                    { name: "Recyclables", value: 45 },
-                    { name: "Organic", value: 30 },
-                    { name: "Landfill", value: 15 },
-                    { name: "Hazardous", value: 5 },
-                    { name: "E-waste", value: 5 },
-                  ]}
-                  index="name"
-                  categories={["value"]}
-                  colors={["#0ea5e9", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"]}
-                  valueFormatter={(value) => `${value}%`}
-                  showLegend={true}
-                />
+                <ChartContainer config={pieChartConfig}>
+                  <PieChart>
+                    <Pie
+                      data={[
+                        { name: "Recyclables", value: 45 },
+                        { name: "Organic", value: 30 },
+                        { name: "Landfill", value: 15 },
+                        { name: "Hazardous", value: 5 },
+                        { name: "E-waste", value: 5 },
+                      ]}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      dataKey="value"
+                    >
+                      {[
+                        { name: "Recyclables", color: "#0ea5e9" },
+                        { name: "Organic", color: "#10b981" },
+                        { name: "Landfill", color: "#f59e0b" },
+                        { name: "Hazardous", color: "#ef4444" },
+                        { name: "E-waste", color: "#8b5cf6" },
+                      ].map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <ChartLegend content={<ChartLegendContent />} />
+                  </PieChart>
+                </ChartContainer>
               </div>
             </CardContent>
           </Card>
@@ -202,24 +272,25 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <BarChart
-                  data={[
-                    { location: "Main Office", rate: 78 },
-                    { location: "Building A", rate: 65 },
-                    { location: "Building B", rate: 83 },
-                    { location: "Cafeteria", rate: 72 },
-                    { location: "Parking", rate: 58 },
-                    { location: "Reception", rate: 75 },
-                  ]}
-                  index="location"
-                  categories={["rate"]}
-                  colors={["#0ea5e9"]}
-                  valueFormatter={(value) => `${value}%`}
-                  showLegend={false}
-                  showXAxis={true}
-                  showYAxis={true}
-                  layout="vertical"
-                />
+                <ChartContainer config={barChartConfig}>
+                  <BarChart
+                    data={[
+                      { location: "Main Office", rate: 78 },
+                      { location: "Building A", rate: 65 },
+                      { location: "Building B", rate: 83 },
+                      { location: "Cafeteria", rate: 72 },
+                      { location: "Parking", rate: 58 },
+                      { location: "Reception", rate: 75 },
+                    ]}
+                    layout="horizontal"
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis dataKey="location" type="category" width={80} />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar dataKey="rate" fill="var(--color-rate)" />
+                  </BarChart>
+                </ChartContainer>
               </div>
             </CardContent>
           </Card>
