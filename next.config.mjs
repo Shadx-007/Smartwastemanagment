@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+//** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -8,16 +8,13 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    domains: ['placeholder.svg'], // Add any external image domains
+    domains: ['placeholder.svg'], // Replace with actual image domains if needed
   },
-  // Enable static exports for better performance
   output: 'standalone',
-  // Optimize for production
-  swcMinify: true,
-  // Enable experimental features
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true, // ⚠️ Note: 'optimizeCss' is experimental and might be removed in future releases
   },
 }
 
 export default nextConfig
+

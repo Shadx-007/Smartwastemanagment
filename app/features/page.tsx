@@ -18,9 +18,9 @@ import {
   Globe,
   CheckCircle,
   ArrowRight,
+  Sparkles,
 } from "lucide-react"
 import Link from "next/link"
-import { MainLayout } from "@/components/main-layout"
 
 const coreFeatures = [
   {
@@ -128,28 +128,36 @@ const technicalFeatures = [
 
 export default function FeaturesPage() {
   return (
-    <MainLayout showSidebars={false} hasFooter={false}>
-      <div className="pt-8">
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Pure black background */}
+      <div className="absolute inset-0 bg-black" />
+
+      {/* 3D Shape Placeholder */}
+      <div className="absolute top-20 right-10 shape-placeholder hidden lg:flex">
+        <Sparkles className="h-8 w-8 text-white/30" />
+      </div>
+
+      <div className="relative z-10">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-          <div className="container mx-auto px-4">
+        <section className="section-spacing">
+          <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-4xl mx-auto"
+              className="text-center max-w-4xl mx-auto mb-12"
             >
-              <Badge variant="secondary" className="mb-6">
+              <Badge variant="secondary" className="mb-4 bg-green-500/20 text-green-400 border-green-500/30">
                 Complete Feature Overview
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 text-white leading-tight">
                 Revolutionary Waste Management
-                <span className="block text-primary">Technology Stack</span>
+                <span className="block text-green-400 mt-1">Technology Stack</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-base lg:text-lg text-gray-300 mb-6 leading-relaxed max-w-3xl mx-auto">
                 Discover how our comprehensive platform combines AI, IoT, blockchain, and advanced analytics to create
                 the world's most intelligent waste segregation system.
               </p>
-              <Button size="lg" asChild className="bg-gradient-to-r from-blue-500 to-purple-600">
+              <Button size="lg" asChild className="bg-gradient-to-r from-green-500 to-emerald-600">
                 <Link href="/demo">Try Live Demo</Link>
               </Button>
             </motion.div>
@@ -157,22 +165,22 @@ export default function FeaturesPage() {
         </section>
 
         {/* Core Features */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
+        <section className="section-spacing">
+          <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Core Platform Features</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-white">Core Platform Features</h2>
+              <p className="text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
                 Each feature is designed to work seamlessly together, creating a comprehensive waste management
                 ecosystem that drives real environmental impact.
               </p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-6">
               {coreFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -181,24 +189,24 @@ export default function FeaturesPage() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <feature.icon className="h-6 w-6 text-primary" />
+                  <Card className="h-full bg-gray-900/80 border-gray-700 backdrop-blur-xl hover:bg-gray-800/80 transition-all duration-300">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                          <feature.icon className="h-5 w-5 text-green-400" />
                         </div>
                         <div>
-                          <CardTitle className="text-xl">{feature.title}</CardTitle>
+                          <CardTitle className="text-lg text-white">{feature.title}</CardTitle>
                         </div>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground mb-6">{feature.description}</p>
+                      <p className="text-gray-300 mb-4 text-sm">{feature.description}</p>
                       <div className="space-y-2">
                         {feature.benefits.map((benefit, idx) => (
                           <div key={idx} className="flex items-center gap-2">
-                            <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                            <span className="text-sm">{benefit}</span>
+                            <CheckCircle className="h-3 w-3 text-green-400 flex-shrink-0" />
+                            <span className="text-xs text-gray-300">{benefit}</span>
                           </div>
                         ))}
                       </div>
@@ -211,22 +219,22 @@ export default function FeaturesPage() {
         </section>
 
         {/* Technical Specifications */}
-        <section className="py-24 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section-spacing bg-gray-900/30">
+          <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Specifications</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-white">Technical Specifications</h2>
+              <p className="text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
                 Built on enterprise-grade infrastructure with cutting-edge technology to ensure reliability,
                 scalability, and security.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {technicalFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -235,16 +243,16 @@ export default function FeaturesPage() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="h-full text-center hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
-                        <feature.icon className="h-6 w-6 text-white" />
+                  <Card className="h-full text-center bg-gray-900/80 border-gray-700 backdrop-blur-xl hover:bg-gray-800/80 transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-3">
+                        <feature.icon className="h-5 w-5 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold mb-3">{feature.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
-                      <div className="space-y-2">
+                      <h3 className="text-base font-semibold mb-2 text-white">{feature.title}</h3>
+                      <p className="text-xs text-gray-300 mb-3">{feature.description}</p>
+                      <div className="space-y-1">
                         {feature.specs.map((spec, idx) => (
-                          <div key={idx} className="text-xs bg-muted/50 rounded px-2 py-1">
+                          <div key={idx} className="text-xs bg-gray-800/50 rounded px-2 py-1 text-gray-300">
                             {spec}
                           </div>
                         ))}
@@ -258,18 +266,18 @@ export default function FeaturesPage() {
         </section>
 
         {/* Integration Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="section-spacing">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
               <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-white">
                   Seamless Integration with Existing Infrastructure
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
+                <p className="text-base text-gray-300 mb-4">
                   Our platform is designed to integrate effortlessly with your current waste management systems,
                   requiring minimal disruption while maximizing efficiency gains.
                 </p>
-                <div className="space-y-4 mb-8">
+                <div className="space-y-3 mb-6">
                   {[
                     "API-first architecture for easy integration",
                     "Support for legacy waste management systems",
@@ -277,15 +285,15 @@ export default function FeaturesPage() {
                     "Comprehensive training and support included",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      <span>{item}</span>
+                      <CheckCircle className="h-4 w-4 text-green-400" />
+                      <span className="text-gray-300 text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
-                <Button size="lg" asChild>
+                <Button size="lg" asChild className="bg-gradient-to-r from-green-500 to-emerald-600">
                   <Link href="/pricing" className="flex items-center gap-2">
                     Get Started Today
-                    <ArrowRight className="h-5 w-5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
               </motion.div>
@@ -296,11 +304,11 @@ export default function FeaturesPage() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl border-2 border-blue-200 dark:border-blue-800 flex items-center justify-center">
+                <div className="aspect-square bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl border border-green-500/30 flex items-center justify-center backdrop-blur-xl">
                   <div className="text-center">
-                    <Globe className="h-24 w-24 text-blue-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Global Deployment</h3>
-                    <p className="text-muted-foreground">Deployed across 50+ countries with 99.9% uptime</p>
+                    <Globe className="h-16 w-16 text-green-400 mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold mb-2 text-white">Global Deployment</h3>
+                    <p className="text-gray-300 text-sm">Deployed across 50+ countries with 99.9% uptime</p>
                   </div>
                 </div>
               </motion.div>
@@ -308,6 +316,6 @@ export default function FeaturesPage() {
           </div>
         </section>
       </div>
-    </MainLayout>
+    </div>
   )
 }

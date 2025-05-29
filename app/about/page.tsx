@@ -117,23 +117,23 @@ const sdgGoals = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-8">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-        <div className="container mx-auto px-4">
+      <section className="section-spacing bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <Badge variant="secondary" className="mb-6">
+            <Badge variant="secondary" className="mb-4">
               About Our Mission
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight">
               Transforming Waste Management
-              <span className="block text-primary">Through AI Innovation</span>
+              <span className="block text-primary mt-1">Through AI Innovation</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-base lg:text-lg text-muted-foreground mb-6 leading-relaxed">
               We're on a mission to revolutionize how the world handles waste, using cutting-edge AI, IoT, and
               blockchain technology to create a more sustainable future for everyone.
             </p>
@@ -142,20 +142,20 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="section-spacing">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="flex items-center gap-3 mb-6">
-                <Target className="h-8 w-8 text-primary" />
-                <h2 className="text-3xl font-bold">Our Mission</h2>
+              <div className="flex items-center gap-3 mb-4">
+                <Target className="h-6 w-6 text-primary" />
+                <h2 className="text-2xl lg:text-3xl font-bold">Our Mission</h2>
               </div>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base text-muted-foreground mb-4 leading-relaxed">
                 To democratize intelligent waste management by making AI-powered waste segregation accessible to
                 organizations worldwide, ultimately reducing environmental impact and promoting circular economy
                 principles.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
                   "Achieve 95%+ waste classification accuracy globally",
                   "Reduce landfill waste by 50% in partner organizations",
@@ -164,7 +164,7 @@ export default function AboutPage() {
                 ].map((goal, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full" />
-                    <span>{goal}</span>
+                    <span className="text-muted-foreground text-sm">{goal}</span>
                   </div>
                 ))}
               </div>
@@ -178,9 +178,9 @@ export default function AboutPage() {
             >
               <div className="aspect-square bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl border-2 border-green-200 dark:border-green-800 flex items-center justify-center">
                 <div className="text-center">
-                  <Heart className="h-24 w-24 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Environmental Impact</h3>
-                  <p className="text-muted-foreground px-6">
+                  <Heart className="h-16 w-16 text-green-500 mx-auto mb-3" />
+                  <h3 className="text-lg font-semibold mb-2">Environmental Impact</h3>
+                  <p className="text-muted-foreground px-6 text-sm">
                     Every classification helps build a cleaner, more sustainable world
                   </p>
                 </div>
@@ -191,22 +191,22 @@ export default function AboutPage() {
       </section>
 
       {/* Why This Matters */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="section-spacing bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why This Project Matters</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-3">Why This Project Matters</h2>
+            <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
               The global waste crisis demands innovative solutions. Our technology addresses critical environmental
               challenges while creating economic opportunities.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: Globe,
@@ -235,13 +235,13 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="text-center h-full">
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <item.icon className="h-8 w-8 text-primary" />
+                  <CardContent className="p-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                      <item.icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                    <div className="text-3xl font-bold text-primary mb-2">{item.stat}</div>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                    <h3 className="text-base font-semibold mb-2">{item.title}</h3>
+                    <div className="text-xl lg:text-2xl font-bold text-primary mb-2">{item.stat}</div>
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -251,25 +251,25 @@ export default function AboutPage() {
       </section>
 
       {/* Tech Stack */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
+      <section className="section-spacing">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Code className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold">Technology Stack</h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Code className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl lg:text-3xl font-bold">Technology Stack</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
               Built with cutting-edge technologies to ensure scalability, reliability, and performance across all
               components of our waste management ecosystem.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {techStack.map((category, index) => (
               <motion.div
                 key={category.category}
@@ -279,11 +279,11 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold mb-4 text-primary">{category.category}</h3>
+                  <CardContent className="p-4">
+                    <h3 className="text-base font-semibold mb-3 text-primary">{category.category}</h3>
                     <div className="space-y-2">
                       {category.technologies.map((tech, idx) => (
-                        <div key={idx} className="text-sm bg-muted/50 rounded px-3 py-2">
+                        <div key={idx} className="text-xs bg-muted/50 rounded px-2 py-1">
                           {tech}
                         </div>
                       ))}
@@ -297,25 +297,25 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="section-spacing bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Users className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold">Meet Our Team</h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Users className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl lg:text-3xl font-bold">Meet Our Team</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
               A diverse team of experts in AI, environmental science, and sustainable technology, united by our passion
               for creating positive environmental impact.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -325,8 +325,8 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="text-center h-full">
-                  <CardContent className="p-6">
-                    <div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
+                  <CardContent className="p-4">
+                    <div className="relative w-16 h-16 rounded-full overflow-hidden mx-auto mb-3">
                       <Image
                         src={member.avatar || "/placeholder.svg"}
                         alt={member.name}
@@ -334,23 +334,23 @@ export default function AboutPage() {
                         className="object-cover"
                       />
                     </div>
-                    <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm mb-3">{member.role}</p>
-                    <p className="text-xs text-muted-foreground mb-4">{member.bio}</p>
-                    <div className="flex justify-center gap-2">
-                      <Button variant="ghost" size="icon" asChild>
+                    <h3 className="font-semibold text-base mb-1">{member.name}</h3>
+                    <p className="text-primary text-xs mb-2">{member.role}</p>
+                    <p className="text-xs text-muted-foreground mb-3">{member.bio}</p>
+                    <div className="flex justify-center gap-1">
+                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
                         <Link href={member.social.linkedin} aria-label="LinkedIn">
-                          <Linkedin className="h-4 w-4" />
+                          <Linkedin className="h-3 w-3" />
                         </Link>
                       </Button>
-                      <Button variant="ghost" size="icon" asChild>
+                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
                         <Link href={member.social.github} aria-label="GitHub">
-                          <Github className="h-4 w-4" />
+                          <Github className="h-3 w-3" />
                         </Link>
                       </Button>
-                      <Button variant="ghost" size="icon" asChild>
+                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
                         <Link href={`mailto:${member.social.email}`} aria-label="Email">
-                          <Mail className="h-4 w-4" />
+                          <Mail className="h-3 w-3" />
                         </Link>
                       </Button>
                     </div>
@@ -363,25 +363,25 @@ export default function AboutPage() {
       </section>
 
       {/* SDG Goals */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
+      <section className="section-spacing">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Award className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold">Supporting UN SDGs</h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Award className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl lg:text-3xl font-bold">Supporting UN SDGs</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
               Our platform directly contributes to multiple United Nations Sustainable Development Goals, creating
               measurable impact across environmental and social dimensions.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sdgGoals.map((goal, index) => (
               <motion.div
                 key={goal.number}
@@ -391,14 +391,14 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm flex-shrink-0">
                         {goal.number}
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">{goal.title}</h3>
-                        <p className="text-sm text-muted-foreground">{goal.description}</p>
+                        <h3 className="font-semibold mb-1 text-sm">{goal.title}</h3>
+                        <p className="text-xs text-muted-foreground">{goal.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -410,11 +410,11 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="section-spacing bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Us in Building a Sustainable Future</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-4">Join Us in Building a Sustainable Future</h2>
+            <p className="text-base lg:text-lg mb-6 max-w-2xl mx-auto opacity-90">
               Whether you're an organization looking to improve your waste management or a developer interested in
               contributing to environmental solutions, we'd love to hear from you.
             </p>

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, X, Star, Zap, Crown } from "lucide-react"
 import Link from "next/link"
-import { MainLayout } from "@/components/main-layout"
 import { cn } from "@/lib/utils"
 
 const pricingPlans = [
@@ -116,188 +115,183 @@ const faqs = [
 
 export default function PricingPage() {
   return (
-    <MainLayout showSidebars={false} showFooter={false}>
-      <div className="pt-8">
-        {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <Badge variant="secondary" className="mb-6">
-                Simple, Transparent Pricing
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Choose the Perfect Plan
-                <span className="block text-primary">for Your Organization</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Start free and scale as you grow. All plans include our core AI-powered waste classification technology
-                with no hidden fees or long-term contracts.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="section-spacing bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <Badge variant="secondary" className="mb-4">
+              Simple, Transparent Pricing
+            </Badge>
+            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight">
+              Choose the Perfect Plan
+              <span className="block text-primary mt-1">for Your Organization</span>
+            </h1>
+            <p className="text-base lg:text-lg text-muted-foreground mb-6 leading-relaxed">
+              Start free and scale as you grow. All plans include our core AI-powered waste classification technology
+              with no hidden fees or long-term contracts.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Pricing Cards */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {pricingPlans.map((plan, index) => (
-                <motion.div
-                  key={plan.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={cn("relative", plan.popular && "lg:-mt-4 lg:mb-4")}
+      {/* Pricing Cards */}
+      <section className="section-spacing">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-3 gap-6">
+            {pricingPlans.map((plan, index) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={cn("relative", plan.popular && "lg:-mt-4 lg:mb-4")}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 text-xs">
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+
+                <Card
+                  className={cn(
+                    "h-full relative overflow-hidden pricing-card",
+                    plan.popular && "border-primary shadow-xl scale-105",
+                  )}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-1">
-                        Most Popular
-                      </Badge>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
                   )}
 
-                  <Card
-                    className={cn(
-                      "h-full relative overflow-hidden",
-                      plan.popular && "border-primary shadow-xl scale-105",
-                    )}
-                  >
-                    {plan.popular && (
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
-                    )}
+                  <CardHeader className="text-center pb-6 relative">
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center",
+                        plan.popular ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-muted",
+                      )}
+                    >
+                      <plan.icon className={cn("h-6 w-6", plan.popular ? "text-white" : "text-muted-foreground")} />
+                    </div>
 
-                    <CardHeader className="text-center pb-8 relative">
-                      <div
-                        className={cn(
-                          "w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center",
-                          plan.popular ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-muted",
-                        )}
-                      >
-                        <plan.icon className={cn("h-8 w-8", plan.popular ? "text-white" : "text-muted-foreground")} />
-                      </div>
+                    <CardTitle className="text-2xl mb-2 pricing-card-title">{plan.name}</CardTitle>
+                    <div className="mb-3">
+                      <span className="text-2xl lg:text-3xl font-bold">{plan.price}</span>
+                      {plan.period !== "contact us" && (
+                        <span className="text-muted-foreground text-sm">/{plan.period}</span>
+                      )}
+                    </div>
+                    <p className="text-muted-foreground text-xs">{plan.description}</p>
+                  </CardHeader>
 
-                      <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                      <div className="mb-4">
-                        <span className="text-4xl font-bold">{plan.price}</span>
-                        {plan.period !== "contact us" && <span className="text-muted-foreground">/{plan.period}</span>}
-                      </div>
-                      <p className="text-muted-foreground text-sm">{plan.description}</p>
-                    </CardHeader>
+                  <CardContent className="relative">
+                    <Button
+                      className={cn(
+                        "w-full mb-4",
+                        plan.popular
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                          : "",
+                      )}
+                      variant={plan.popular ? "default" : "outline"}
+                      asChild
+                    >
+                      <Link href={plan.href}>{plan.cta}</Link>
+                    </Button>
 
-                    <CardContent className="relative">
-                      <Button
-                        className={cn(
-                          "w-full mb-6",
-                          plan.popular
-                            ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-                            : "",
-                        )}
-                        variant={plan.popular ? "default" : "outline"}
-                        asChild
-                      >
-                        <Link href={plan.href}>{plan.cta}</Link>
-                      </Button>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-xs uppercase tracking-wide text-muted-foreground">
+                        What's Included
+                      </h4>
+                      {plan.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <CheckCircle className="h-3 w-3 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm pricing-feature-text">{feature}</span>
+                        </div>
+                      ))}
 
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
-                          What's Included
-                        </h4>
-                        {plan.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{feature}</span>
-                          </div>
-                        ))}
+                      {plan.limitations.length > 0 && (
+                        <>
+                          <h4 className="font-semibold text-xs uppercase tracking-wide text-muted-foreground mt-4">
+                            Not Included
+                          </h4>
+                          {plan.limitations.map((limitation, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <X className="h-3 w-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">{limitation}</span>
+                            </div>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                        {plan.limitations.length > 0 && (
-                          <>
-                            <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mt-6">
-                              Not Included
-                            </h4>
-                            {plan.limitations.map((limitation, idx) => (
-                              <div key={idx} className="flex items-start gap-3">
-                                <X className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-muted-foreground">{limitation}</span>
-                              </div>
-                            ))}
-                          </>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+      {/* FAQ Section */}
+      <section className="section-spacing bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-3">Frequently Asked Questions</h2>
+            <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+              Get answers to common questions about our pricing, features, and implementation process.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card>
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold mb-2 text-sm">{faq.question}</h3>
+                    <p className="text-muted-foreground text-xs">{faq.answer}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-spacing bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Sustainability Journey?</h2>
+            <p className="text-base lg:text-lg mb-6 max-w-2xl mx-auto opacity-90">
+              Join thousands of organizations already reducing their environmental impact with our AI-powered waste
+              management platform.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="/signup">Start Free Trial</Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                asChild
+              >
+                <Link href="/demo">Watch Demo</Link>
+              </Button>
             </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-24 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Get answers to common questions about our pricing, features, and implementation process.
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card>
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold mb-3">{faq.question}</h3>
-                      <p className="text-muted-foreground text-sm">{faq.answer}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Sustainability Journey?</h2>
-              <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Join thousands of organizations already reducing their environmental impact with our AI-powered waste
-                management platform.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/signup">Start Free Trial</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                  asChild
-                >
-                  <Link href="/demo">Watch Demo</Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </div>
-    </MainLayout>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   )
 }
