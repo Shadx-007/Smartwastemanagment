@@ -1,133 +1,133 @@
 "use client"
 
-import type React from "react"
-
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { UserIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Menu, X, Recycle, BarChart3, Zap, Users } from "lucide-react"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
-const navItems = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Features",
-    path: "/features",
-  },
-  {
-    name: "AI Features",
-    path: "/ai-features",
-  },
-  {
-    name: "Model",
-    path: "/model",
-  },
-  {
-    name: "Pricing",
-    path: "/pricing",
-  },
-  {
-    name: "Demo",
-    path: "/demo",
-  },
-  {
-    name: "Dashboard",
-    path: "/dashboard",
-  },
-  {
-    name: "About",
-    path: "/about",
-  },
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Features", href: "/features" },
+  { name: "AI Features", href: "/ai-features" },
+  { name: "Model", href: "/model" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Demo", href: "/demo" },
+  { name: "Dashboard", href: "/dashboard" },
+  { name: "About", href: "/about" },
 ]
 
-export default function Navbar({ children }: { children?: React.ReactNode }) {
+const features = [
+  { name: "AI Classification", href: "/features#ai", icon: Zap },
+  { name: "Real-time Analytics", href: "/features#analytics", icon: BarChart3 },
+  { name: "Waste Tracking", href: "/features#tracking", icon: Recycle },
+  { name: "Team Management", href: "/features#team", icon: Users },
+]
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [showFeatures, setShowFeatures] = useState(false)
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/20">
-      <div className="container flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
-        <div className="flex items-center gap-2">
-          {children}
-          <Link href="/" className="font-bold text-xl md:ml-2 text-foreground">
-            Smart Waste
+    <nav className="sticky top-0 z-50 w-full border-b glass-card backdrop-blur-xl">
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="relative">
+              <Recycle className="h-8 w-8 text-primary group-hover:rotate-180 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-500" />
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              SmartWaste
+            </span>
+            <Badge variant="secondary" className="text-xs">
+              AI
+            </Badge>
           </Link>
-        </div>
 
-        {/* Center Navigation - Evenly Spaced */}
-        <nav className="hidden md:flex items-center justify-center flex-1 mx-8">
-          <div className="flex items-center gap-6">
-            {navItems.map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => (
               <Link
-                key={item.path}
-                href={item.path}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap",
-                  pathname === item.path ? "text-foreground" : "text-muted-foreground",
-                )}
+                key={item.name}
+                href={item.href}
+                className={`text-sm font-medium transition-colors hover:text-primary relative group ${
+                  pathname === item.href ? "text-primary" : "text-muted-foreground"
+                }`}
               >
                 {item.name}
+                {pathname === item.href && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
           </div>
-        </nav>
 
-        {/* Right-aligned Auth Buttons */}
-        <div className="flex items-center gap-3">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={() => {
-              const html = document.documentElement
-              const isLight = html.classList.contains("light")
-              if (isLight) {
-                html.classList.remove("light")
-                html.classList.add("dark")
-                localStorage.setItem("theme", "dark")
-              } else {
-                html.classList.remove("dark")
-                html.classList.add("light")
-                localStorage.setItem("theme", "light")
-              }
-            }}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle theme"
-          >
-            <svg className="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <svg className="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </button>
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeSwitcher />
+            <Button variant="outline" size="sm" className="glass-button" asChild>
+              <Link href="/login">Sign In</Link>
+            </Button>
+            <Button size="sm" className="glass-button" asChild>
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+          </div>
 
-          <Button variant="ghost" size="sm" className="text-sm" asChild>
-            <Link href="/login">Log In</Link>
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white text-sm" asChild>
-            <Link href="/signup">
-              <UserIcon className="mr-2 h-4 w-4" />
-              Sign Up
-            </Link>
-          </Button>
-          <div className="hidden md:block ml-2">
-            <ModeToggle />
+          {/* Mobile menu button */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeSwitcher />
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="glass-button">
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                    pathname === item.href
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-primary hover:bg-muted/50"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="pt-4 border-t">
+                <Button variant="outline" className="w-full mb-2 glass-button" asChild>
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button className="w-full glass-button" asChild>
+                  <Link href="/signup">Sign Up</Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
-    </header>
+    </nav>
   )
 }

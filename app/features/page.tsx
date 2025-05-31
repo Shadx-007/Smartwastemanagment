@@ -139,12 +139,12 @@ export default function FeaturesPage() {
 
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="section-spacing">
+        <section className="section-spacing py-16 lg:py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-4xl mx-auto mb-12"
+              className="text-center max-w-4xl mx-auto mb-16 lg:mb-20"
             >
               <Badge variant="secondary" className="mb-4 bg-green-500/20 text-green-400 border-green-500/30">
                 Complete Feature Overview
@@ -165,13 +165,13 @@ export default function FeaturesPage() {
         </section>
 
         {/* Core Features */}
-        <section className="section-spacing">
+        <section className="section-spacing py-16 lg:py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-center mb-16 lg:mb-20"
             >
               <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-white">Core Platform Features</h2>
               <p className="text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -180,7 +180,7 @@ export default function FeaturesPage() {
               </p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
               {coreFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -200,7 +200,7 @@ export default function FeaturesPage() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6 lg:p-8">
                       <p className="text-gray-300 mb-4 text-sm">{feature.description}</p>
                       <div className="space-y-2">
                         {feature.benefits.map((benefit, idx) => (
@@ -219,13 +219,13 @@ export default function FeaturesPage() {
         </section>
 
         {/* Technical Specifications */}
-        <section className="section-spacing bg-gray-900/30">
+        <section className="section-spacing py-16 lg:py-24 bg-gray-900/30">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-center mb-16 lg:mb-20"
             >
               <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-white">Technical Specifications</h2>
               <p className="text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -234,7 +234,7 @@ export default function FeaturesPage() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {technicalFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -244,7 +244,7 @@ export default function FeaturesPage() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Card className="h-full text-center bg-gray-900/80 border-gray-700 backdrop-blur-xl hover:bg-gray-800/80 transition-all duration-300">
-                    <CardContent className="p-4">
+                    <CardContent className="p-6 lg:p-8">
                       <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-3">
                         <feature.icon className="h-5 w-5 text-white" />
                       </div>
@@ -266,18 +266,18 @@ export default function FeaturesPage() {
         </section>
 
         {/* Integration Section */}
-        <section className="section-spacing">
+        <section className="section-spacing py-16 lg:py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-white">
                   Seamless Integration with Existing Infrastructure
                 </h2>
-                <p className="text-base text-gray-300 mb-4">
+                <p className="text-base text-gray-300 mb-6">
                   Our platform is designed to integrate effortlessly with your current waste management systems,
                   requiring minimal disruption while maximizing efficiency gains.
                 </p>
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mb-8">
                   {[
                     "API-first architecture for easy integration",
                     "Support for legacy waste management systems",

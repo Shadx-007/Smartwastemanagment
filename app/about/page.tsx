@@ -119,7 +119,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="section-spacing bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <section className="section-spacing py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +142,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-spacing">
+      <section className="section-spacing py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -191,13 +191,13 @@ export default function AboutPage() {
       </section>
 
       {/* Why This Matters */}
-      <section className="section-spacing bg-muted/30">
+      <section className="section-spacing py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16 lg:mb-20"
           >
             <h2 className="text-2xl lg:text-3xl font-bold mb-3">Why This Project Matters</h2>
             <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -235,7 +235,7 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="text-center h-full">
-                  <CardContent className="p-4">
+                  <CardContent className="p-6 lg:p-8">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                       <item.icon className="h-6 w-6 text-primary" />
                     </div>
@@ -251,13 +251,13 @@ export default function AboutPage() {
       </section>
 
       {/* Tech Stack */}
-      <section className="section-spacing">
+      <section className="section-spacing py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16 lg:mb-20"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Code className="h-6 w-6 text-primary" />
@@ -269,7 +269,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {techStack.map((category, index) => (
               <motion.div
                 key={category.category}
@@ -279,7 +279,7 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full">
-                  <CardContent className="p-4">
+                  <CardContent className="p-6 lg:p-8">
                     <h3 className="text-base font-semibold mb-3 text-primary">{category.category}</h3>
                     <div className="space-y-2">
                       {category.technologies.map((tech, idx) => (
@@ -297,13 +297,13 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="section-spacing bg-muted/30">
+      <section className="section-spacing py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16 lg:mb-20"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Users className="h-6 w-6 text-primary" />
@@ -315,7 +315,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -325,7 +325,7 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="text-center h-full">
-                  <CardContent className="p-4">
+                  <CardContent className="p-6 lg:p-8">
                     <div className="relative w-16 h-16 rounded-full overflow-hidden mx-auto mb-3">
                       <Image
                         src={member.avatar || "/placeholder.svg"}
@@ -363,13 +363,13 @@ export default function AboutPage() {
       </section>
 
       {/* SDG Goals */}
-      <section className="section-spacing">
+      <section className="section-spacing py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16 lg:mb-20"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Award className="h-6 w-6 text-primary" />
@@ -381,7 +381,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {sdgGoals.map((goal, index) => (
               <motion.div
                 key={goal.number}
@@ -391,7 +391,7 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="h-full hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-4">
+                  <CardContent className="p-6 lg:p-8">
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm flex-shrink-0">
                         {goal.number}
@@ -410,7 +410,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-spacing bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
+      <section className="section-spacing py-16 lg:py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-2xl lg:text-3xl font-bold mb-4">Join Us in Building a Sustainable Future</h2>

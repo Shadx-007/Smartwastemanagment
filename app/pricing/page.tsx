@@ -117,7 +117,7 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="section-spacing bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <section className="section-spacing py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -140,9 +140,9 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="section-spacing">
+      <section className="section-spacing py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-10">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={plan.name}
@@ -189,7 +189,7 @@ export default function PricingPage() {
                     <p className="text-muted-foreground text-xs">{plan.description}</p>
                   </CardHeader>
 
-                  <CardContent className="relative">
+                  <CardContent className="relative p-6 lg:p-8">
                     <Button
                       className={cn(
                         "w-full mb-4",
@@ -237,16 +237,20 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-spacing bg-muted/30">
+      <section className="section-spacing py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center mb-16 lg:mb-20"
+          >
             <h2 className="text-2xl lg:text-3xl font-bold mb-3">Frequently Asked Questions</h2>
             <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
               Get answers to common questions about our pricing, features, and implementation process.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-4xl mx-auto">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -256,7 +260,7 @@ export default function PricingPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card>
-                  <CardContent className="p-4">
+                  <CardContent className="p-6 lg:p-8">
                     <h3 className="font-semibold mb-2 text-sm">{faq.question}</h3>
                     <p className="text-muted-foreground text-xs">{faq.answer}</p>
                   </CardContent>
@@ -268,7 +272,7 @@ export default function PricingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-spacing bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
+      <section className="section-spacing py-16 lg:py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Sustainability Journey?</h2>

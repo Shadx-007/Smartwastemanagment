@@ -55,6 +55,9 @@ export function HeroSection() {
                 <span className="block bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent drop-shadow-2xl">
                   WASTE
                 </span>
+                <span className="block bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-600 bg-clip-text text-transparent drop-shadow-2xl">
+                  SEGREGATION
+                </span>
               </motion.h1>
 
               <motion.p
